@@ -1,46 +1,22 @@
-# Getting Started with Create React App
+# 메라키플레이스 프론트엔드 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 라이브러리
 
-## Available Scripts
+## 스토리
 
-In the project directory, you can run:
+### 유저는 배송지를 입력, 삭제 할 수 있다.
 
-### `npm start`
+- 배송지명, 별칭, 상세주소, 배송시 유의사항을 입력 받는다.
+- 배송지 삭제 기능 구현한다.
+- 데이터가 없는 경우 UI를 구현한다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 유저는 주소를 검색해서 지도에서 결과를 확인할 수 있다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 검색된 주소는 맵마커로 지도에 표시한다.
+- 맵마커를 선택시 상세 설명이 나온다.
+- 검색시 유사 결과가 리스트로 나온다.
+- 결과는 무한 스크롤이 가능해야 한다.
+- 
+### 유저가 웹 종료 후 재 접속하더라도 데이터가 유지돼야 한다.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- db를 구성 하여 데이터를 저장한다.
