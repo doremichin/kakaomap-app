@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import KakaoMap from "../../.shared/Map";
+import WriteForm from "./writeForm/WriteForm";
 
 function WriteComponent () {
     return(
         <Container>
-            <Input type={'text'}/>
+            <KakaoMap/>
+            <WriteForm/>
         </Container>
     )
 };
 
 const Container = styled.div`
-
-`;
-const Input = styled.input`
-  width: 500px;
-  padding: 10px;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default WriteComponent;
