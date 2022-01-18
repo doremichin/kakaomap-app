@@ -6,7 +6,7 @@ import AddressItem from "../../.shared/Item/AddressItem";
 import {IAddressData} from "../../../interface/address.interface";
 
 function MainComponent () {
-    const currentAddress = useSelector((state : RootState) => state.address.currentAddress)
+    const currentAddress = useSelector((state : RootState) => state.common.AddressList)
     return(
         <Container>
             {
