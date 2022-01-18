@@ -1,36 +1,36 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {useDispatch} from "react-redux";
-import {searchAddress} from "../../../../redux/search/slice";
-import {DefaultInput} from "../../../.shared/Styled/input.styled";
+import { useDispatch } from 'react-redux';
 
+import { searchAddress } from '../../../../redux/search/slice';
+import { DefaultInput } from '../../../.shared/Styled/input.styled';
 
-function SearchAddress () {
-    const dispatch = useDispatch();
+function SearchAddress() {
+  const dispatch = useDispatch();
 
-    const [value ,setValue] = useState('')
+  const [value, setValue] = useState('');
 
-    const onChange = (e : any) => {
-        setValue(e.target.value)
-    }
+  const onChange = (e : any) => {
+    setValue(e.target.value);
+  };
 
-    const onSubmit = (e : any) => {
-        e.preventDefault();
-        dispatch(searchAddress(value))
-    }
+  const onSubmit = (e : any) => {
+    e.preventDefault();
+    dispatch(searchAddress(value));
+  };
 
-    return(
-        <Container>
-            <Form onSubmit={onSubmit}>
-                <Label>
-                    <p>주소 입력</p>
-                    <Input type={'text'} onChange={onChange} />
-                </Label>
-                <Button>주소 확인</Button>
-            </Form>
-        </Container>
-    )
-};
+  return (
+    <Container>
+      <Form onSubmit={onSubmit}>
+        <Label>
+          <p>주소 입력</p>
+          <Input type="text" onChange={onChange} />
+        </Label>
+        <Button>주소 확인</Button>
+      </Form>
+    </Container>
+  );
+}
 
 const Container = styled.div`
   margin-bottom: 20px;

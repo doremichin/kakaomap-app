@@ -41,6 +41,7 @@ function Map () {
         map.setCenter(coords)
     },[x,y])
 
+
     return(
         <Container>
             <KaKaoMap id={'map'}/>

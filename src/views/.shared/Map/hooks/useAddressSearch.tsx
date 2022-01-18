@@ -24,6 +24,7 @@ export const useAddressSearch = (query : any,page : number) => {
             store.dispatch(setRelatedAddress(result))
         }
     };
+
     var options = {
         page,
         size : 20,

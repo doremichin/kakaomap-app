@@ -28,5 +28,4 @@ export interface IRoadAddress {
     x : string
     y : string
     zone_no : string
-
 }

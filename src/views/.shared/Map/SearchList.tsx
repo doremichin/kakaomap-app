@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {DefaultInput} from "../Styled/input.styled";
 import {DefaultButton} from "../Styled/button.styled";
@@ -40,6 +40,7 @@ function SearchList () {
             dispatch(setSelectAddress(defaultSelectAddress));
         }
     },[page])
+
 
     return(
         <Container>
@@ -83,3 +84,4 @@ const Bottom = styled.div`
 `;
 
 export default SearchList;
+

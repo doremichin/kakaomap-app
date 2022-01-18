@@ -1,14 +1,17 @@
-import React  from 'react';
-import {SubmitHandler, useForm} from 'react-hook-form';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import {DefaultInput} from "../../../.shared/Styled/input.styled";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/store";
-import {setAddressDocument} from "../../../../firebase/query";
-import {useHistory} from "react-router-dom";
-import {DefaultButton} from "../../../.shared/Styled/button.styled";
-import Map from "../../../.shared/Map/Map";
 
+import { useSelector } from 'react-redux';
+
+import { useHistory } from 'react-router-dom';
+
+import { DefaultInput } from '../../../.shared/Styled/input.styled';
+import { RootState } from '../../../../redux/store';
+import { setAddressDocument } from '../../../../firebase/query';
+
+import { DefaultButton } from '../../../.shared/Styled/button.styled';
+import Map from '../../../.shared/Map/Map';
 
 type Inputs = {
     address : string,
@@ -17,50 +20,52 @@ type Inputs = {
     shippingNotes : string
 };
 
-function WriteForm () {
-    const { address_name }= useSelector((state : RootState) => state.common.SelectAddress);
-    const history = useHistory();
+function WriteForm() {
+  const { address_name } = useSelector((state : RootState) => state.common.SelectAddress);
+  const history = useHistory();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+  const {
+    register, handleSubmit, watch, formState: { errors },
+  } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        if(address_name.length > 0){
-            const newData = {
-                ...data,
-                address : address_name,
-            }
-            await setAddressDocument(newData)
-            history.push('/')
-        }else {
-            alert('올바른 주소를 입력해주세요.')
-        }
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (address_name.length > 0) {
+      const newData = {
+        ...data,
+        address: address_name,
+      };
+      await setAddressDocument(newData);
+      history.push('/');
+    } else {
+      alert('올바른 주소를 입력해주세요.');
     }
+  };
 
-    return(
-        <Container>
-            <Map/>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <Label>
-                    <p>주소</p>
-                    <Input disabled type={'text'} {...register("address")} defaultValue={address_name} />
-                </Label>
-                <Label>
-                    <p>상세주소</p>
-                    <Input type={'text'} {...register("detailedAddress")}/>
-                </Label>
-                <Label>
-                    <p>배송지명</p>
-                    <Input type={'text'} {...register("shippingAddress")}/>
-                </Label>
-                <Label>
-                    <p>배송시 유의사항</p>
-                    <Input type={'text'} {...register("shippingNotes")}/>
-                </Label>
-                <Button>등록하기</Button>
-            </Form>
-        </Container>
-    )
-};
+  return (
+    <Container>
+      <Map />
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Label>
+          <p>주소</p>
+          <Input disabled type="text" {...register('address')} defaultValue={address_name} />
+        </Label>
+        <Label>
+          <p>상세주소</p>
+          <Input type="text" {...register('detailedAddress')} />
+        </Label>
+        <Label>
+          <p>배송지명</p>
+          <Input type="text" {...register('shippingAddress')} />
+        </Label>
+        <Label>
+          <p>배송시 유의사항</p>
+          <Input type="text" {...register('shippingNotes')} />
+        </Label>
+        <Button>등록하기</Button>
+      </Form>
+    </Container>
+  );
+}
 
 const Container = styled.div`
 
