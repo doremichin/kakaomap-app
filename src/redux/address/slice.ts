@@ -16,9 +16,13 @@ export const addressSlice = createSlice({
         setCurrentAddress: (state,action ) => {
             state.currentAddress = action.payload
         },
+        deleteCurrentAddress : (state,action ) => {
+            const address = state.currentAddress
+            state.currentAddress = address.filter((data) => data.id !== action.payload)
+        },
     },
 })
 
-export const { setCurrentAddress } = addressSlice.actions
+export const { setCurrentAddress , deleteCurrentAddress} = addressSlice.actions
 
 export default addressSlice.reducer
