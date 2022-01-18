@@ -1,11 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import {IAddressData} from "../../../interface/address.interface";
+import { MdCancel } from 'react-icons/md';
+import {deleteAddressDocument} from "../../../firebase/query";
+import {useDispatch} from "react-redux";
+import { deleteCurrentAddress } from '../../../redux/address/slice';
 interface Props{
     data : IAddressData
 }
 
 function AddressItem ({data} : Props) {
+    const dispatch = useDispatch();
+
+    const deleteClick = async () => {
+        if(confirm('주소를 삭제 하시겠어요?')){
+            await deleteAddressDocument(data.id)
+            dispatch(deleteCurrentAddress(data.id))
+        }
+    }
+
     return(
         <Container>
             <Left>
@@ -13,7 +26,7 @@ function AddressItem ({data} : Props) {
                     {data.shippingAddress}
                 </Title>
                 <Address>
-                    {data.address}
+                    {data.address}&nbsp;/&nbsp;
                     {data.detailedAddress}
                 </Address>
                 <Notes>
@@ -21,7 +34,9 @@ function AddressItem ({data} : Props) {
                 </Notes>
             </Left>
             <Right>
-                1
+                <DeleteButton>
+                    <MdCancel onClick={deleteClick}/>
+                </DeleteButton>
             </Right>
         </Container>
     )
@@ -35,7 +50,7 @@ const Container = styled.div`
   justify-content: space-between;
   box-shadow:  0 1px 6px #ddd;
   padding: 20px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 `;
 const Left = styled.div`
   
@@ -54,6 +69,12 @@ const Notes = styled.div`
 `;
 const Right = styled.div`
   
+`;
+const DeleteButton = styled.div`
+  font-size: 20px;
+  color: rgb(52,120,246);
+  cursor: pointer;
+  padding: 5px;
 `;
 
 export default AddressItem;
