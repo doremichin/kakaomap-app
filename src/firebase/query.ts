@@ -1,6 +1,6 @@
 import { collection, getDocs, doc, setDoc,deleteDoc } from "firebase/firestore";
 import {db} from "./firebase";
-import {setCurrentAddress} from "../redux/address/slice";
+import {setCurrentAddress} from "../redux/common/slice";
 import {store} from "../redux/store";
 
 export const getAddressCollection = async () => {

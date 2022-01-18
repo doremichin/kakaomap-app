@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import KakaoMap from "../../.shared/Map";
 import WriteForm from "./writeForm/WriteForm";
 
 function WriteComponent () {
     return(
         <Container>
-            <KakaoMap/>
             <WriteForm/>
         </Container>
     )

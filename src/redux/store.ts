@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import searchReducer from "./search/slice";
-import addressReducer from "./address/slice";
+import commonReducer from "./common/slice";
 
 export const store = configureStore({
     reducer: {
         search : searchReducer,
-        address : addressReducer
+        common : commonReducer
     },
 })
 

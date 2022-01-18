@@ -4,7 +4,7 @@ import {IAddressData} from "../../../interface/address.interface";
 import { MdCancel } from 'react-icons/md';
 import {deleteAddressDocument} from "../../../firebase/query";
 import {useDispatch} from "react-redux";
-import { deleteCurrentAddress } from '../../../redux/address/slice';
+import { deleteCurrentAddress } from '../../../redux/common/slice';
 interface Props{
     data : IAddressData
 }
