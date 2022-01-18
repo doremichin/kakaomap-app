@@ -10,8 +10,8 @@ function MainComponent () {
     return(
         <Container>
             {
-                currentAddress.map((data : IAddressData) => (
-                    <AddressItem data={data}/>
+                currentAddress.map((data : IAddressData , index) => (
+                    <AddressItem data={data} key={index}/>
                 ))
             }
         </Container>

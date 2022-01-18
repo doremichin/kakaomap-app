@@ -1,36 +1,60 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {DefaultInput} from "../Styled/input.styled";
 import {DefaultButton} from "../Styled/button.styled";
 import {useAddressSearch} from "./hooks/useAddressSearch";
 import {RootState} from "../../../redux/store";
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import RelatedAddressItem from "../Item/RelatedAddressItem";
+import {setRelatedAddress} from "../../../redux/search/slice";
+import {defaultSelectAddress, setSelectAddress} from "../../../redux/common/slice";
+import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 function SearchList () {
-
+    const [page , setPage] = useState(1);
+    const [query , setQuery] = useState('');
     const related = useSelector((state : RootState) => state.search.related)
+    const dispatch = useDispatch()
 
-    const ref = useRef<HTMLInputElement>(null);
     const submitClick = () => {
-        if(ref.current !== null){
-            console.log(ref.current.value)
-            useAddressSearch(ref.current.value)
+        if(query !== ''){
+            useAddressSearch(query,1)
+        }
+        setPage(1);
+    }
+    const inputChange = (e : any) => {
+        setQuery(e.target.value)
+    }
+    const next = () => {
+        if(related.length > 0){
+            //페이지를 올려준다
+            setPage(p => p+1)
         }
     }
+    useEffect(() => {
+        if(query !== ''){
+            useAddressSearch(query, page)
+        }
+        return () => {
+            dispatch(setRelatedAddress([]));
+            dispatch(setSelectAddress(defaultSelectAddress));
+        }
+    },[page])
 
     return(
         <Container>
             <Top>
-                <Input ref={ref}/>
+                <Input onChange={inputChange}/>
                 <SubmitButton onClick={submitClick}>검색</SubmitButton>
             </Top>
-            <Bottom>
-                {
-                    related.map((data) => (
-                        <RelatedAddressItem data={data}/>
-                    ))
-                }
+            <Bottom id={'search-list'}>
+                <InfiniteScroll next={next}>
+                    {
+                        related.map((data,index) => (
+                            <RelatedAddressItem data={data} key={index}/>
+                        ))
+                    }
+                </InfiniteScroll>
             </Bottom>
         </Container>
     )

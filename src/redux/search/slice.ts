@@ -19,11 +19,14 @@ export const searchSlice = createSlice({
             state.query = action.payload
         },
         setRelatedAddress : (state,action ) => {
-            state.related = action.payload
+            state.related = [...state.related, ...action.payload]
+        },
+        setInitialAddress : (state,action ) => {
+            state.related = action.payload;
         },
     },
 })
 
-export const { searchAddress , setRelatedAddress } = searchSlice.actions
+export const { searchAddress , setRelatedAddress ,setInitialAddress} = searchSlice.actions
 
 export default searchSlice.reducer
