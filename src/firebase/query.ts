@@ -1,10 +1,11 @@
-import { collection, getDocs, doc, setDoc,deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc,deleteDoc,serverTimestamp,orderBy, query } from "firebase/firestore";
 import {db} from "./firebase";
 import {setCurrentAddress} from "../redux/common/slice";
 import {store} from "../redux/store";
 
 export const getAddressCollection = async () => {
-    const querySnapshot = await getDocs(collection(db, "address"));
+    const q = query(collection(db, "address"),orderBy('timestamp', 'asc'))
+    const querySnapshot = await getDocs(q);
     const result : any[] = [];
     querySnapshot.forEach((doc) => {
         console.log(doc.data());
@@ -21,9 +22,12 @@ export const getAddressCollection = async () => {
 
 export const setAddressDocument = async (data : any) => {
 
-    const newCityRef = doc(collection(db, "address"));
+    const ref = doc(collection(db, "address"));
 
-    await setDoc(newCityRef, data);
+    await setDoc(ref, {
+        ...data,
+        timestamp : serverTimestamp()
+    });
 
 }
 

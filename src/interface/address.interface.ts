@@ -4,6 +4,7 @@ export interface IAddressData {
     detailedAddress: string
     shippingAddress: string
     shippingNotes: string
+    timestamp : any
 }
 
 export interface IRelatedAddress {

@@ -24,9 +24,10 @@ function WriteForm () {
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        if(data.address.length > 0){
+        if(address_name.length > 0){
             const newData = {
                 ...data,
+                address : address_name,
             }
             await setAddressDocument(newData)
             history.push('/')
@@ -38,11 +39,10 @@ function WriteForm () {
     return(
         <Container>
             <Map/>
-            {/*<SearchAddress/>*/}
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Label>
                     <p>주소</p>
-                    <Input type={'text'} {...register("address")} defaultValue={address_name} />
+                    <Input disabled type={'text'} {...register("address")} defaultValue={address_name} />
                 </Label>
                 <Label>
                     <p>상세주소</p>

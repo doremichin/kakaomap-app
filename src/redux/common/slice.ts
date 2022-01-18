@@ -1,34 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {IAddressData, IRelatedAddress, IRoadAddress} from "../../interface/address.interface";
+import {IAddressData, IRelatedAddress } from "../../interface/address.interface";
 
 export interface CounterState {
     AddressList: IAddressData[]
     SelectAddress : IRelatedAddress
 }
 
+export const defaultSelectAddress = {
+    address : '',
+    address_name : '',
+    address_type : '',
+    road_address : {
+        address_name : '',
+        building_name : '',
+        main_building_no : '',
+        region_1depth_name : '',
+        region_2depth_name : '',
+        region_3depth_name : '',
+        road_name : '',
+        sub_building_no : '',
+        underground_yn : '',
+        x : '',
+        y : '',
+        zone_no : '',
+    },
+    x : 126.978652258309,
+    y : 37.566826004661
+}
+
 const initialState: CounterState = {
     AddressList: [],
-    SelectAddress : {
-        address : '',
-        address_name : '',
-        address_type : '',
-        road_address : {
-            address_name : '',
-            building_name : '',
-            main_building_no : '',
-            region_1depth_name : '',
-            region_2depth_name : '',
-            region_3depth_name : '',
-            road_name : '',
-            sub_building_no : '',
-            underground_yn : '',
-            x : '',
-            y : '',
-            zone_no : '',
-        },
-        x : 0,
-        y : 0,
-    }
+    SelectAddress : defaultSelectAddress,
 }
 
 export const commonSlice = createSlice({
