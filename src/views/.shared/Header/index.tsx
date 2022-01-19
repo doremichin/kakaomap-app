@@ -20,7 +20,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow:  1px 1px 6px #ddd;
+  box-shadow: 1px 1px 3px #dedede;
 `;
 const Logo = styled(Link)`
     display: inline-block;

@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
-import { RootState } from '../../../redux/store';
 import AddressItem from '../../.shared/Item/AddressItem';
 import { IAddressData } from '../../../interface/address.interface';
 
-function MainComponent() {
-  const currentAddress = useSelector((state : RootState) => state.common.addressList);
+interface Props {
+  data : IAddressData[]
+}
+
+function MainComponent({ data } : Props) {
   return (
     <Container>
       {
-        currentAddress.map((data : IAddressData, index) => (
-          <AddressItem data={data} key={index} />
+        data.map((item : IAddressData, index) => (
+          <AddressItem data={item} key={index} />
         ))
       }
     </Container>
