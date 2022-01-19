@@ -21,7 +21,7 @@ interface Props {
 
 function WriteForm({ onSubmit, defaultValue } : Props) {
   const {
-    register, handleSubmit, watch, formState: { errors },
+    register, handleSubmit,
   } = useForm<Inputs>();
 
   return (

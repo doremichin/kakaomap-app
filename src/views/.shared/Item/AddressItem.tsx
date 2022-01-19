@@ -19,7 +19,6 @@ function AddressItem ({data} : Props) {
             dispatch(deleteCurrentAddress(data.id))
         }
     }
-
     return(
         <Container>
             <Left>

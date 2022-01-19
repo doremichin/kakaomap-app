@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import SearchList from "./SearchList";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-
 
 declare global {
     interface Window {
