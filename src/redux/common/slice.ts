@@ -5,6 +5,7 @@ import { IAddressData, IRelatedAddress } from '../../interface/address.interface
 export interface CounterState {
     addressList: IAddressData[]
     selectAddress : IRelatedAddress
+    initialized : boolean
 }
 
 export const defaultSelectAddress = {
@@ -32,6 +33,7 @@ export const defaultSelectAddress = {
 const initialState: CounterState = {
   addressList: [],
   selectAddress: defaultSelectAddress,
+  initialized: false,
 };
 
 export const commonSlice = createSlice({
@@ -48,9 +50,14 @@ export const commonSlice = createSlice({
     setSelectAddress: (state, { payload }) => {
       state.selectAddress = payload;
     },
+    setInitialized: (state) => {
+      state.initialized = true;
+    },
   },
 });
 
-export const { setCurrentAddress, deleteCurrentAddress, setSelectAddress } = commonSlice.actions;
+export const {
+  setCurrentAddress, deleteCurrentAddress, setSelectAddress, setInitialized,
+} = commonSlice.actions;
 
 export default commonSlice.reducer;

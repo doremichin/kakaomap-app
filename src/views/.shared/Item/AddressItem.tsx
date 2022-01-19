@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import {IAddressData} from "../../../interface/address.interface";
-import { MdCancel } from 'react-icons/md';
 import {deleteAddressDocument} from "../../../firebase/document";
 import {useDispatch} from "react-redux";
 import { deleteCurrentAddress } from '../../../redux/common/slice';
+import { MdCancel } from 'react-icons/md';
+
 interface Props{
     data : IAddressData
 }
