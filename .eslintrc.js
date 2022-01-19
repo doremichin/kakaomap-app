@@ -70,6 +70,7 @@ module.exports = {
     'react/prop-types': 'off',
     camelcase: 'off',
     'max-len': 'off',
+    "no-alert" : "off"
     // 'no-shadow': 'off',
   },
 };

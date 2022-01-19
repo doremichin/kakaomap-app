@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useDispatch} from "react-redux";
-import { setSelectAddress } from '../../../redux/common/slice';
+import { setSelectAddress } from '../../../redux/search/slice';
 
 function RelatedAddressItem ({data} : any) {
     const dispatch = useDispatch();
