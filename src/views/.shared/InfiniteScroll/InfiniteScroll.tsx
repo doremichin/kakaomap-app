@@ -54,3 +54,4 @@ const Checker = styled.div`
 `;
 
 export default InfiniteScroll;
+

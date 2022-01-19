@@ -16,7 +16,11 @@ const Container = styled.div`
   align-items: center;
 `;
 const NavItem = styled(Link)`
-    padding: 10px;
+  padding: 10px 20px;
+  border: 1px solid rgba(108,108,108);
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 export default Nav;

@@ -1,22 +1,20 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {DefaultInput} from "../Styled/input.styled";
 import {DefaultButton} from "../Styled/button.styled";
 import {useAddressSearch} from "./hooks/useAddressSearch";
 import {RootState} from "../../../redux/store";
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import RelatedAddressItem from "../Item/RelatedAddressItem";
-import {setRelatedAddress} from "../../../redux/search/slice";
-import {defaultSelectAddress, setSelectAddress} from "../../../redux/common/slice";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 function SearchList () {
     const [page , setPage] = useState(1);
     const [query , setQuery] = useState('');
     const related = useSelector((state : RootState) => state.search.related)
-    const dispatch = useDispatch()
 
-    const submitClick = () => {
+    const handleSubmit = (e : any) => {
+        e.preventDefault();
         if(query !== ''){
             useAddressSearch(query,1)
         }
@@ -35,17 +33,16 @@ function SearchList () {
         if(query !== ''){
             useAddressSearch(query, page)
         }
-        return () => {
-            dispatch(setRelatedAddress([]));
-            dispatch(setSelectAddress(defaultSelectAddress));
-        }
     },[page])
+
 
     return(
         <Container>
             <Top>
-                <Input onChange={inputChange}/>
-                <SubmitButton onClick={submitClick}>검색</SubmitButton>
+                <Form onSubmit={handleSubmit}>
+                    <Input onChange={inputChange} placeholder={'주소를 입력해 주세요.'}/>
+                    <SubmitButton>검색</SubmitButton>
+                </Form>
             </Top>
             <Bottom id={'search-list'}>
                 <InfiniteScroll next={next}>
@@ -63,19 +60,23 @@ function SearchList () {
 const Container = styled.div`
   position: relative;
   width: 300px;
-  background-color: #eee;
+  background-color: #f5f5f5;
 `;
 const Top = styled.div`
+`;
+const Form = styled.form`
   display: flex;
 `;
 const Input = styled(DefaultInput)`
   height: 30px;
   padding: 10px;
-  width: 100%;
+  border-right: none;
+  flex: 1;
 `;
 const SubmitButton = styled(DefaultButton)`
-  background-color: #e0e0e0;
-    width: 50px;
+  background-color: rgb(52,120,246);
+  color: #fff;
+  padding: 5px 12px;
 `;
 const Bottom = styled.div`
   height: 470px;
@@ -83,3 +84,4 @@ const Bottom = styled.div`
 `;
 
 export default SearchList;
+

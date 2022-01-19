@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
-import {IRelatedAddress} from "../../interface/address.interface";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { IRelatedAddress } from '../../interface/address.interface';
 
 export interface CounterState {
     query: string
@@ -7,26 +8,26 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-    query: '',
-    related : [],
-}
+  query: '',
+  related: [],
+};
 
 export const searchSlice = createSlice({
-    name: 'search',
-    initialState,
-    reducers: {
-        searchAddress: (state,action ) => {
-            state.query = action.payload
-        },
-        setRelatedAddress : (state,action ) => {
-            state.related = [...state.related, ...action.payload]
-        },
-        setInitialAddress : (state,action ) => {
-            state.related = action.payload;
-        },
+  name: 'search',
+  initialState,
+  reducers: {
+    searchAddress: (state, { payload }) => {
+      state.query = payload;
     },
-})
+    setRelatedAddress: (state, { payload }) => {
+      state.related = [...state.related, ...payload];
+    },
+    setInitialAddress: (state, { payload }) => {
+      state.related = payload;
+    },
+  },
+});
 
-export const { searchAddress , setRelatedAddress ,setInitialAddress} = searchSlice.actions
+export const { searchAddress, setRelatedAddress, setInitialAddress } = searchSlice.actions;
 
-export default searchSlice.reducer
+export default searchSlice.reducer;

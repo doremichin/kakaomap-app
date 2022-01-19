@@ -15,7 +15,7 @@ const {kakao} = window
 
 function Map () {
 
-    const {x, y, address_name} = useSelector((state : RootState) => state.common.SelectAddress)
+    const {x, y, address_name} = useSelector((state : RootState) => state.common.selectAddress)
 
 
     useEffect(() => {
@@ -41,18 +41,12 @@ function Map () {
         map.setCenter(coords)
     },[x,y])
 
+
     return(
-        <Container>
-            <KaKaoMap id={'map'}/>
-            <SearchList/>
-        </Container>
+        <KaKaoMap id={'map'}/>
     )
 };
 
-const Container = styled.div`
-  display: flex;
-  margin-bottom: 30px;
-`;
 const KaKaoMap = styled.div`
   width: 400px;
   height: 500px;

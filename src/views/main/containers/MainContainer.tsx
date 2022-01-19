@@ -1,20 +1,24 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {getAddressCollection} from "../../../firebase/query";
-import MainComponent from "../components/MainComponent";
 
-function MainContainer () {
+import { useDispatch } from 'react-redux';
 
-    useEffect(() => {
-        getAddressCollection()
-    })
+import MainComponent from '../components/MainComponent';
+import { getAddress } from '../services/getAddress';
 
-    return(
-        <Container>
-            <MainComponent/>
-        </Container>
-    )
-};
+function MainContainer() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAddress('address'));
+  });
+
+  return (
+    <Container>
+      <MainComponent />
+    </Container>
+  );
+}
 
 const Container = styled.div`
 `;

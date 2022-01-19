@@ -6,3 +6,4 @@ export const DefaultButton = styled.button`
   background-color: #fff;
   cursor: pointer;
 `;
+
