@@ -1,17 +1,12 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { useSelector } from 'react-redux';
-
-import { useHistory } from 'react-router-dom';
-
 import { DefaultInput } from '../../../.shared/Styled/input.styled';
-import { RootState } from '../../../../redux/store';
-import { setAddressDocument } from '../../../../firebase/query';
 
 import { DefaultButton } from '../../../.shared/Styled/button.styled';
 import Map from '../../../.shared/Map/Map';
+import SearchList from '../../../.shared/Map/SearchList';
 
 type Inputs = {
     address : string,
@@ -19,35 +14,26 @@ type Inputs = {
     shippingAddress : string,
     shippingNotes : string
 };
+interface Props {
+  onSubmit(data : any) : Promise<any>
+  defaultValue : string
+}
 
-function WriteForm() {
-  const { address_name } = useSelector((state : RootState) => state.common.SelectAddress);
-  const history = useHistory();
-
+function WriteForm({ onSubmit, defaultValue } : Props) {
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (address_name.length > 0) {
-      const newData = {
-        ...data,
-        address: address_name,
-      };
-      await setAddressDocument(newData);
-      history.push('/');
-    } else {
-      alert('올바른 주소를 입력해주세요.');
-    }
-  };
-
   return (
     <Container>
-      <Map />
+      <MapSection>
+        <Map />
+        <SearchList />
+      </MapSection>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Label>
           <p>주소</p>
-          <Input disabled type="text" {...register('address')} defaultValue={address_name} />
+          <Input disabled type="text" {...register('address')} defaultValue={defaultValue} />
         </Label>
         <Label>
           <p>상세주소</p>
@@ -70,6 +56,10 @@ function WriteForm() {
 const Container = styled.div`
 
 `;
+const MapSection = styled.div`
+  display: flex;
+  margin-bottom: 30px;
+`;
 const Form = styled.form`
   
 `;
@@ -83,13 +73,15 @@ const Label = styled.label`
   }
 `;
 const Input = styled(DefaultInput)`
-  width: 500px;
+  width: 700px;
   padding: 10px;
 `;
 const Button = styled(DefaultButton)`
-  padding: 8px 12px;
+  padding: 10px 20px;
   background-color: rgb(52,120,246);
+  font-size: 16px;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 5px;
 `;
+
 export default WriteForm;

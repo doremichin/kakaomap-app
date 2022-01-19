@@ -16,7 +16,7 @@ function RelatedAddressItem ({data} : any) {
 };
 
 const Container = styled.div`
-  padding: 5px 10px;
+  padding: 6px 10px;
   font-size: 14px;
   background-color: #fff;
   color: #333;

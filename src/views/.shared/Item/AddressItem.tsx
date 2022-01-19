@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {IAddressData} from "../../../interface/address.interface";
 import { MdCancel } from 'react-icons/md';
-import {deleteAddressDocument} from "../../../firebase/query";
+import {deleteAddressDocument} from "../../../firebase/document";
 import {useDispatch} from "react-redux";
 import { deleteCurrentAddress } from '../../../redux/common/slice';
 interface Props{
@@ -14,7 +14,7 @@ function AddressItem ({data} : Props) {
 
     const deleteClick = async () => {
         if(confirm('주소를 삭제 하시겠어요?')){
-            await deleteAddressDocument(data.id)
+            await deleteAddressDocument('address',data.id)
             dispatch(deleteCurrentAddress(data.id))
         }
     }

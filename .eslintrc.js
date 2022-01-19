@@ -69,6 +69,7 @@ module.exports = {
     'react/button-has-type': 'off',
     'react/prop-types': 'off',
     camelcase: 'off',
+    'max-len': 'off',
     // 'no-shadow': 'off',
   },
 };

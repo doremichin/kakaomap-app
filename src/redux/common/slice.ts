@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IAddressData, IRelatedAddress } from '../../interface/address.interface';
 
 export interface CounterState {
-    AddressList: IAddressData[]
-    SelectAddress : IRelatedAddress
+    addressList: IAddressData[]
+    selectAddress : IRelatedAddress
 }
 
 export const defaultSelectAddress = {
@@ -30,23 +30,23 @@ export const defaultSelectAddress = {
 };
 
 const initialState: CounterState = {
-  AddressList: [],
-  SelectAddress: defaultSelectAddress,
+  addressList: [],
+  selectAddress: defaultSelectAddress,
 };
 
 export const commonSlice = createSlice({
   name: 'common',
   initialState,
   reducers: {
-    setCurrentAddress: (state, action) => {
-      state.AddressList = action.payload;
+    setCurrentAddress: (state, { payload }) => {
+      state.addressList = payload;
     },
-    deleteCurrentAddress: (state, action) => {
-      const address = state.AddressList;
-      state.AddressList = address.filter((data) => data.id !== action.payload);
+    deleteCurrentAddress: (state, { payload }) => {
+      const address = state.addressList;
+      state.addressList = address.filter((data) => data.id !== payload);
     },
-    setSelectAddress: (state, action) => {
-      state.SelectAddress = action.payload;
+    setSelectAddress: (state, { payload }) => {
+      state.selectAddress = payload;
     },
   },
 });
