@@ -13,8 +13,7 @@ const {kakao} = window
 
 function Map () {
 
-    const {x, y, address_name} = useSelector((state : RootState) => state.common.selectAddress)
-
+    const {x, y, address_name} = useSelector((state : RootState) => state.search.selectAddress)
 
     useEffect(() => {
         var coords = new kakao.maps.LatLng(y, x);

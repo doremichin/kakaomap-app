@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom';
 import { RootState } from '../../../redux/store';
 import WriteForm from '../components/writeForm/WriteForm';
 import { setAddressDocument } from '../../../firebase/document';
-import { setInitialAddress } from '../../../redux/search/slice';
+import { defaultSelectAddress, setInitialAddress, setSelectAddress } from '../../../redux/search/slice';
 
 function WriteContainer() {
-  const { address_name } = useSelector((state : RootState) => state.common.selectAddress);
+  const { address_name } = useSelector((state : RootState) => state.search.selectAddress);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -29,6 +29,7 @@ function WriteContainer() {
   };
   useEffect(() => () => {
     dispatch(setInitialAddress([]));
+    dispatch(setSelectAddress(defaultSelectAddress));
   }, []);
 
   return (
