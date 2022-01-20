@@ -24,7 +24,7 @@ function WriteContainer() {
       await setAddressDocument('address', newData);
       history.push('/');
     } else {
-      alert('올바른 주소를 입력해주세요.');
+      alert('주소를 검색 후 넣어주세요:)');
     }
   };
   useEffect(() => () => {

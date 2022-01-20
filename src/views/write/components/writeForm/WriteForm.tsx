@@ -7,6 +7,7 @@ import { DefaultInput } from '../../../.shared/Styled/input.styled';
 import { DefaultButton } from '../../../.shared/Styled/button.styled';
 import Map from '../../../.shared/Map/Map';
 import SearchList from '../../../.shared/Map/SearchList';
+import FormMessage from '../../../.shared/Message/FormMessage';
 
 type Inputs = {
     address : string,
@@ -21,7 +22,7 @@ interface Props {
 
 function WriteForm({ onSubmit, defaultValue } : Props) {
   const {
-    register, handleSubmit,
+    register, handleSubmit, formState: { errors },
   } = useForm<Inputs>();
 
   return (
@@ -33,19 +34,42 @@ function WriteForm({ onSubmit, defaultValue } : Props) {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Label>
           <p>주소</p>
-          <Input disabled type="text" {...register('address')} defaultValue={defaultValue} />
+          <Input
+            disabled
+            type="text"
+            {...register('address')}
+            defaultValue={defaultValue}
+          />
         </Label>
         <Label>
           <p>상세주소</p>
-          <Input type="text" {...register('detailedAddress')} />
+          <Input
+            type="text"
+            {...register('detailedAddress', {
+              required: true,
+            })}
+          />
+          <FormMessage error={errors?.detailedAddress?.type} />
         </Label>
         <Label>
           <p>배송지명</p>
-          <Input type="text" {...register('shippingAddress')} />
+          <Input
+            type="text"
+            {...register('shippingAddress', {
+              required: true,
+            })}
+          />
+          <FormMessage error={errors?.shippingAddress?.type} />
         </Label>
         <Label>
           <p>배송시 유의사항</p>
-          <Input type="text" {...register('shippingNotes')} />
+          <Input
+            type="text"
+            {...register('shippingNotes', {
+              required: true,
+            })}
+          />
+          <FormMessage error={errors?.shippingNotes?.type} />
         </Label>
         <Button>등록하기</Button>
       </Form>
