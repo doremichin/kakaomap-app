@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Nav from "./Nav";
-import {HomeIcons} from "../../../icons";
 
-function Header () {
-    return(
-        <Container>
-            <Logo to={'/'}>
-                <HomeIcons/>
-            </Logo>
-            <Nav/>
-        </Container>
-    )
-};
+import Nav from './Nav';
+import { HomeIcons } from '../../../icons';
+
+function Header() {
+  return (
+    <Container>
+      <Logo to="/">
+        <HomeIcons />
+      </Logo>
+      <Nav />
+    </Container>
+  );
+}
 
 const Container = styled.div`
   padding: 0 25px;

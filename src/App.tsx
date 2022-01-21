@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Router from './Router';
-import Header from './views/.shared/Header';
+import Header from './views/_shared/Header';
 import { GlobalStyle } from './style/GlobalStyle';
 
 function App() {

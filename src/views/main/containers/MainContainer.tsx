@@ -3,24 +3,39 @@ import styled from 'styled-components';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import MainComponent from '../components/MainComponent';
+import AddressList from '../components/AddressList';
 import { RootState } from '../../../redux/store';
 import { getAddress } from '../services/getAddress';
 import AddPlease from '../components/item/AddPlease';
+import AddressItem from '../components/item/AddressItem';
+import { deleteAddressDocument } from '../../../firebase/document';
+import { deleteCurrentAddress } from '../../../redux/common/slice';
 
 function MainContainer() {
   const dispatch = useDispatch();
-  const addressData = useSelector((state : RootState) => state.common.addressList);
-  const initialized = useSelector((state : RootState) => state.common.initialized);
+  const { addressList, initialized } = useSelector((state : RootState) => ({
+    addressList: state.common.addressList,
+    initialized: state.common.initialized,
+  }));
+
   useEffect(() => {
     dispatch(getAddress('address'));
   }, []);
-  if (addressData.length === 0 && !initialized) return <Loading>...</Loading>;
-  if (addressData.length === 0 && initialized) return <AddPlease />;
 
+  if (!initialized) return <Loading>...</Loading>;
+  if (addressList.length === 0) return <AddPlease />;
+
+  const handleDelete = async (id : string) => {
+    if (confirm('주소를 삭제 하시겠어요?')) {
+      await deleteAddressDocument('address', id);
+      dispatch(deleteCurrentAddress(id));
+    }
+  };
   return (
     <Container>
-      <MainComponent data={addressData} />
+      <AddressList data={addressList}>
+        {(item, index) => <AddressItem data={item} key={index} onDelete={() => handleDelete(item.id)} />}
+      </AddressList>
     </Container>
   );
 }
