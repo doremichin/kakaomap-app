@@ -53,11 +53,15 @@ export const searchSlice = createSlice({
     setSelectAddress: (state, { payload }) => {
       state.selectAddress = payload;
     },
+    resetAddressData: (state) => {
+      state.selectAddress = defaultSelectAddress;
+      state.related = [];
+    },
   },
 });
 
 export const {
-  searchAddress, setRelatedAddress, setInitialAddress, setSelectAddress,
+  searchAddress, setRelatedAddress, setInitialAddress, setSelectAddress, resetAddressData,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

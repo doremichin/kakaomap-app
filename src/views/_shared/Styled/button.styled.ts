@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DefaultButton = styled.button`
   border: 1px solid transparent;
@@ -6,4 +6,3 @@ export const DefaultButton = styled.button`
   background-color: #fff;
   cursor: pointer;
 `;
-

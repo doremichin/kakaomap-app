@@ -1,36 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { DefaultInput } from '../../../.shared/Styled/input.styled';
+import { DefaultInput } from '../../../_shared/Styled/input.styled';
 
-import { DefaultButton } from '../../../.shared/Styled/button.styled';
-import Map from '../../../.shared/Map/Map';
-import SearchList from '../../../.shared/Map/SearchList';
-import FormMessage from '../../../.shared/Message/FormMessage';
+import { DefaultButton } from '../../../_shared/Styled/button.styled';
+import FormMessage from '../../../_shared/Message/FormMessage';
 
-type Inputs = {
+export type Inputs = {
     address : string,
     detailedAddress: string,
     shippingAddress : string,
     shippingNotes : string
 };
 interface Props {
-  onSubmit(data : any) : Promise<any>
-  defaultValue : string
+  onSubmit(data : Inputs) : Promise<any>
+  value : string
 }
 
-function WriteForm({ onSubmit, defaultValue } : Props) {
+function WriteForm({ onSubmit, value } : Props) {
   const {
-    register, handleSubmit, formState: { errors },
+    register, handleSubmit, formState: { errors }, setValue, reset,
   } = useForm<Inputs>();
+
+  useEffect(() => {
+    setValue('address', value);
+    reset({
+      address: value,
+      detailedAddress: '',
+      shippingAddress: '',
+      shippingNotes: '',
+    });
+  }, [value]);
 
   return (
     <Container>
-      <MapSection>
-        <Map />
-        <SearchList />
-      </MapSection>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Label>
           <p>주소</p>
@@ -38,7 +42,6 @@ function WriteForm({ onSubmit, defaultValue } : Props) {
             disabled
             type="text"
             {...register('address')}
-            defaultValue={defaultValue}
           />
         </Label>
         <Label>
@@ -79,10 +82,6 @@ function WriteForm({ onSubmit, defaultValue } : Props) {
 
 const Container = styled.div`
 
-`;
-const MapSection = styled.div`
-  display: flex;
-  margin-bottom: 30px;
 `;
 const Form = styled.form`
   

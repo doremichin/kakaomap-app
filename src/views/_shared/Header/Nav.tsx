@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-function Nav () {
-    return(
-        <Container>
-            <NavItem to={'/write'}>배송지 입력</NavItem>
-        </Container>
-    )
-};
+function Nav() {
+  return (
+    <Container>
+      <NavItem to="/write">배송지 입력</NavItem>
+    </Container>
+  );
+}
 
 const Container = styled.div`
   height: 60px;

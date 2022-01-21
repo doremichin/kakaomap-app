@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import AddressItem from '../../.shared/Item/AddressItem';
 import { IAddressData } from '../../../interface/address.interface';
 
 interface Props {
   data : IAddressData[]
+  children(item : IAddressData, index : number) : void
 }
 
-function MainComponent({ data } : Props) {
+function AddressList({ data, children } : Props) {
   return (
     <Container>
       {
-        data.map((item : IAddressData, index) => (
-          <AddressItem data={item} key={index} />
-        ))
+        data.map((item : IAddressData, index) => children(item, index))
       }
     </Container>
   );
@@ -24,4 +22,4 @@ const Container = styled.div`
   padding-top: 50px;
 `;
 
-export default MainComponent;
+export default AddressList;

@@ -1,40 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { useHistory } from 'react-router-dom';
-
-import { RootState } from '../../../redux/store';
-import WriteForm from '../components/writeForm/WriteForm';
-import { setAddressDocument } from '../../../firebase/document';
-import { defaultSelectAddress, setInitialAddress, setSelectAddress } from '../../../redux/search/slice';
+import MapSearch from '../components/MapSearch';
+import FormContainer from './FormContainer';
 
 function WriteContainer() {
-  const { address_name } = useSelector((state : RootState) => state.search.selectAddress);
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const onSubmit = async (data : any) => {
-    if (address_name.length > 0) {
-      const newData = {
-        ...data,
-        address: address_name,
-      };
-      await setAddressDocument('address', newData);
-      history.push('/');
-    } else {
-      alert('주소를 검색 후 넣어주세요:)');
-    }
-  };
-  useEffect(() => () => {
-    dispatch(setInitialAddress([]));
-    dispatch(setSelectAddress(defaultSelectAddress));
-  }, []);
-
   return (
     <Container>
-      <WriteForm onSubmit={onSubmit} defaultValue={address_name} />
+      <MapSearch />
+      <FormContainer />
     </Container>
   );
 }
