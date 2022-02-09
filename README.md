@@ -1,4 +1,4 @@
-# 메라키플레이스 프론트엔드 과제
+# Kakao Map API
 
 ## 스펙
 [create-react-app](https://create-react-app.dev/)
