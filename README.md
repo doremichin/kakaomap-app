@@ -1,7 +1,7 @@
 # Kakao Map API
 
 Url
-https://address-search-and-save.netlify.app
+- https://address-search-and-save.netlify.app
 
 ## 스펙
 [create-react-app](https://create-react-app.dev/)
